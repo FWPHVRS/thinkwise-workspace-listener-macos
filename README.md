@@ -16,9 +16,9 @@ You are welcome to report issues or contribute improvements through GitHub. Repo
 
 1. Unzip the download and drag **SQL Folder Listener.app** into **Applications**.
 2. Open the app from Applications.
-3. Click **Choose editor…** and select your installed SQL editor. Alternatively, use **Use macOS default** to follow your current `.sql` file association.
-4. Click **Choose folder…** and select the same workspace folder you select in Software Factory's browser folder picker.
-5. Keep **Also open updated SQL files** and **Include subfolders** enabled for the usual Software Factory workflow.
+3. Under **Open files with**, select **Choose application…** and select your installed SQL editor. Alternatively, select **Use macOS default** from that menu to follow your current `.sql` file association.
+4. Click **Choose…** next to **Workspace folder** and select the same workspace folder you select in Software Factory's browser folder picker.
+5. Keep **Open updated files** and **Include subfolders** enabled for the usual Software Factory workflow.
 6. Keep your editor open and ready, then have Software Factory write a SQL file to the workspace folder.
 
 The release is ad-hoc signed, but **not Apple Developer ID signed or notarized**. macOS may block its first launch. If you trust the downloaded release, follow [Apple's instructions for opening an unidentified app](https://support.apple.com/en-us/102445). Do not disable Gatekeeper system-wide. On a managed Mac, your administrator may need to approve it. You can also build the app locally from the source below.
@@ -32,6 +32,8 @@ The release is ad-hoc signed, but **not Apple Developer ID signed or notarized**
 - Sends files to the chosen editor through macOS's normal open-file mechanism. It does not execute SQL or connect to your database.
 - Saves your folder, editor and monitoring options locally. There is no telemetry or network service in this utility.
 
+The status panel shows whether monitoring is active, paused, or needs attention. Use **Pause** / **Resume** to control monitoring. **How it works** explains startup behavior and background operation. **Quit listener** exits the app.
+
 Closing the settings window keeps monitoring in the background. Use **SQL → Settings…** to reopen it, or **SQL → Quit** to stop the app. **SQL ●** means monitoring is enabled; check Settings for file-access errors. Launch the app again after restarting your Mac; automatic login startup is not configured.
 
 The app polls every half second and reads SQL files to detect changes. It is intended for a working folder of generated scripts, rather than a large archive. Files written while the app is stopped are treated as existing files on its next start.
@@ -40,7 +42,7 @@ The app polls every half second and reads SQL files to detect changes. It is int
 
 The selected application must support opening `.sql` documents through macOS. TablePlus opening and refreshing files were verified during development. Selecting TextEdit and opening a SQL file in it were also verified. Other editors can be selected, but their handling of an already-open file, unsaved changes, and cold startup varies. Keep a database editor open with the intended connection ready. A successful handoff means macOS accepted the open request; it does not prove the editor displayed the file or selected the correct connection.
 
-If you save changes in the editor while monitoring updates, the listener also detects those changes. Disable **Also open updated SQL files** if that is inconvenient.
+If you save changes in the editor while monitoring updates, the listener also detects those changes. Disable **Open updated files** if that is inconvenient.
 
 If nothing opens, check the status in Settings, verify both folder selections match, and confirm your editor can open a `.sql` file from Finder. Browser support for Software Factory's folder picker is separate from this app. macOS folder permissions may also require your approval.
 
@@ -59,7 +61,7 @@ The script compiles both CPU architectures, combines them into a universal app, 
 ```sh
 "build/SQL Folder Listener.app/Contents/MacOS/SQLFolderListener" --self-test
 cd dist
-shasum -a 256 -c SQL-Folder-Listener-1.1.0-macOS-universal.zip.sha256
+shasum -a 256 -c SQL-Folder-Listener-1.2.0-macOS-universal.zip.sha256
 ```
 
 Automated tests cover startup files, settling writes, new files, updates, duplicate suppression, extension filtering, deletion, new-only mode and subfolders. Building both architectures does not replace runtime testing on an Intel Mac. The GitHub Actions workflow builds and tests the same source and retains its own downloadable build artifact.
