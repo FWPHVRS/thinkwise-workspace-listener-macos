@@ -76,8 +76,7 @@ final class ListenerApp: NSObject, NSApplicationDelegate, NSWindowDelegate {
     var statusItem: NSStatusItem!
     var window: NSWindow!
     var settingsStack: NSStackView?
-    let folderLabel = NSTextField(wrappingLabelWithString: "Choose the same folder you selected in Software Factory.")
-    let editorLabel = NSTextField(wrappingLabelWithString: "macOS default")
+    let folderLabel = NSTextField(wrappingLabelWithString: "No folder selected")
     let editorPicker = NSPopUpButton(frame: .zero, pullsDown: true)
     let statusTitle = NSTextField(labelWithString: "Ready to set up")
     let statusIcon = NSImageView()
@@ -343,7 +342,6 @@ final class ListenerApp: NSObject, NSApplicationDelegate, NSWindowDelegate {
         } else {
             name = hasExplicitEditor ? "Editor unavailable" : "macOS default"
         }
-        editorLabel.stringValue = name
         editorPicker.removeAllItems()
         editorPicker.addItem(withTitle: name)
         let current = NSMenuItem(title: name, action: nil, keyEquivalent: ""); current.isEnabled = false
