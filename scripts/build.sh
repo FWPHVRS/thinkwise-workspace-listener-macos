@@ -4,8 +4,9 @@ ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 BUILD="$ROOT/build"
 APP="$BUILD/SQL Folder Listener.app"
 VERSION=$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$ROOT/Info.plist")
-mkdir -p "$APP/Contents/MacOS" "$BUILD/module-cache"
+mkdir -p "$APP/Contents/MacOS" "$APP/Contents/Resources" "$BUILD/module-cache"
 cp "$ROOT/Info.plist" "$APP/Contents/Info.plist"
+cp "$ROOT/LICENSE" "$APP/Contents/Resources/LICENSE.txt"
 for ARCH in arm64 x86_64; do
     xcrun swiftc -swift-version 5 -O -target "$ARCH-apple-macosx13.0" \
         -module-cache-path "$BUILD/module-cache" \
