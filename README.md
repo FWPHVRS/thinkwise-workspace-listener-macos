@@ -4,6 +4,12 @@ A small menu bar app that watches the workspace folder used by Thinkwise Softwar
 
 This is an independent community utility, not an official Thinkwise product. It does not include or modify Thinkwise's Linux listener.
 
+## Maintenance and support
+
+This project is shared as a community contribution, provided as-is. There is no commitment to active maintenance, future releases, compatibility with future macOS or Thinkwise versions, or fixed response times. No commercial support or service-level agreement is included.
+
+You are welcome to report issues or contribute improvements through GitHub. Reports and contributions may be reviewed when time permits; a response or fix is not guaranteed. Thinkwise does not provide support for this utility.
+
 ## Download and install
 
 **[Download the latest release](https://github.com/FWPHVRS/thinkwise-workspace-listener-macos/releases/latest)** — choose the `macOS-universal.zip` asset. One app supports Apple Silicon and Intel Macs running macOS 13 or later. No .NET installation is needed.
